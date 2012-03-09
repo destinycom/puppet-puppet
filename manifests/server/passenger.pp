@@ -35,7 +35,6 @@ class puppet::server::passenger {
         default => ["set /files/etc/default/puppetmaster/START yes",],
         passenger => ["set /files/etc/default/puppetmaster/START no",],
       },
-      require => Package['rubygem-augeas'],
     }
   }
 }
