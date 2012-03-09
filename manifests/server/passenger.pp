@@ -29,4 +29,13 @@ class puppet::server::passenger {
       notify => Exec['restart_puppet'],
   }
 
+  if $::operatingsystem == 'debian' or $::operatingsystem == 'Ubuntu' {
+    augeas { '/etc/default/puppetmaster':
+      changes => $puppetmaster::frontend ? {
+        default => ["set /files/etc/default/puppetmaster/START yes",],
+        passenger => ["set /files/etc/default/puppetmaster/START no",],
+      },
+      require => Package['rubygem-augeas'],
+    }
+  }
 }
