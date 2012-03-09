@@ -25,5 +25,5 @@
     localconfig = $vardir/localconfig
     report      = true
     pluginsync  = true
-    environment = <%= environment %>
-    server      = <%= puppetmaster %>
+    environment = <%= scope.lookupvar('puppet::params::environment') %>
+    server      = <%= scope.lookupvar('puppet::params:puppetmaster') %>
