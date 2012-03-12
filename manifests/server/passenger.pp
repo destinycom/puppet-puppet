@@ -33,10 +33,7 @@ class puppet::server::passenger {
 
   if $::operatingsystem == 'debian' or $::operatingsystem == 'Ubuntu' {
     augeas { '/etc/default/puppetmaster':
-      changes     => $puppetmaster::frontend ? {
-        default   => ["set /files/etc/default/puppetmaster/START yes",],
-        passenger => ["set /files/etc/default/puppetmaster/START no",],
-      },
+      changes     => ["set /files/etc/default/puppetmaster/START no",],
       require => Package['puppetmaster'],
     }
     package { 'puppetmaster-passenger':
